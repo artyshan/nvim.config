@@ -194,6 +194,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', ';', ':')
 vim.keymap.set('n', ':', ';')
 vim.keymap.set('i', 'kj', '<Esc>')
+vim.keymap.set('n', '-', '<Cmd>Oil<CR>')
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -260,6 +262,15 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
     },
+  },
+
+  -- Oil for navigation
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
