@@ -267,7 +267,12 @@ require('lazy').setup({
   -- Oil for navigation
   {
     'stevearc/oil.nvim',
-    opts = {},
+
+    opts = {
+      view_options = {
+        show_hidden = true,
+      },
+    },
     -- Optional dependencies
     -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
@@ -867,11 +872,11 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'kvrohit/substrata.nvim',
+    'fcancelinha/nordern.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
-      vim.cmd.colorscheme 'substrata'
+      vim.cmd.colorscheme 'nordern'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
