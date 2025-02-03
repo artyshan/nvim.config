@@ -278,7 +278,6 @@ require('lazy').setup({
 			vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 			vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
 			vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-			vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
 			vim.keymap.set('n', '<leader>gs', '<Cmd>vert Git<CR>', { desc = '[G]it [S]tatus' })
 			vim.keymap.set('n', '<leader>gl', '<Cmd>vert Git log --oneline<CR>', { desc = '[G]it [L]og' })
@@ -574,6 +573,12 @@ require('lazy').setup({
 				dependencies = {},
 				config = function(_, _)
 					require 'custom/snippets'
+					vim.keymap.set(
+						'n',
+						'<leader><leader>s',
+						'<cmd>source ' .. vim.fn.stdpath 'config' .. '/lua/custom/snippets.lua<cr>',
+						{ desc = '[S]ource snippets' }
+					)
 				end,
 			},
 			'saadparwaiz1/cmp_luasnip',
