@@ -577,7 +577,7 @@ require('lazy').setup({
 						'n',
 						'<leader><leader>s',
 						'<cmd>source ' .. vim.fn.stdpath 'config' .. '/lua/custom/snippets.lua<cr>',
-						{ desc = '[S]ource snippets' }
+						{ desc = 'Source [S]nippets' }
 					)
 				end,
 			},
