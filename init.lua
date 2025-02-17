@@ -281,6 +281,7 @@ require('lazy').setup({
 
 			vim.keymap.set('n', '<leader>gs', '<Cmd>vert Git<CR>', { desc = '[G]it [S]tatus' })
 			vim.keymap.set('n', '<leader>gl', '<Cmd>vert Git log --oneline<CR>', { desc = '[G]it [L]og' })
+			vim.keymap.set('n', '<leader>gfh', '<Cmd>vert Git log --oneline %<CR>', { desc = '[G]it [F]ile [H]istory' })
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set('n', '<leader>/', function()
@@ -620,7 +621,7 @@ require('lazy').setup({
 					-- Accept ([y]es) the completion.
 					--  This will auto-import if your LSP supports it.
 					--  This will expand snippets if the LSP sent a snippet.
-					['<C-y>'] = cmp.mapping.confirm { select = true },
+					['<Tab>'] = cmp.mapping.confirm { select = true },
 
 					-- If you prefer more traditional completion keymaps,
 					-- you can uncomment the following lines
