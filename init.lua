@@ -17,7 +17,7 @@ vim.g.have_nerd_font = true
 
 require 'custom/opts'
 require 'custom/keymaps'
-require 'custom/test'
+require 'custom/exec'
 
 vim.filetype.add {
 	extension = {
@@ -39,6 +39,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 		vim.highlight.on_yank()
 	end,
 })
+
+vim.api.nvim_create_user_command('InspectRtp',
+	function()
+		vim.cmd "new | put =split(&runtimepath, ',')"
+	end,{}
+)
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
