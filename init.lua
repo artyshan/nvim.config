@@ -863,3 +863,10 @@ require('lazy').setup({
 		},
 	},
 })
+
+-- TODO: integrate this into my custom coloscheme
+vim.cmd 'hi MiniStatuslineFilename guibg=#CCCCCC guifg=#222222 gui=bold'
+vim.cmd 'hi MiniStatuslineDevinfo guibg=#CCCCCC guifg=#222222 gui=bold'
+vim.cmd 'hi MiniStatuslineFileinfo guibg=#CCCCCC guifg=#222222 gui=bold'
+vim.cmd 'hi MiniStatuslineInactive guibg=#778899 guifg=#444444'
+vim.cmd 'hi MsgArea guibg=#778899 guifg=#EEEEEE'
