@@ -34,3 +34,7 @@ ls.add_snippets('javascript', {
 	ls.parser.parse_snippet({ trig = '{', name = 'Block' }, '{\n\t$0\n}'),
 	ls.parser.parse_snippet({ trig = 'clog', name = 'Console Log' }, 'console.log($0);'),
 })
+
+ls.add_snippets('go', {
+	ls.parser.parse_snippet({ trig = 'for', name = 'For loop' }, 'for $1 {\n\t$0\n}'),
+})

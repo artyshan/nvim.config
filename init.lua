@@ -17,7 +17,7 @@ vim.g.have_nerd_font = true
 
 require 'custom/opts'
 require 'custom/keymaps'
-require 'custom/test'
+require 'custom/exec'
 
 vim.filetype.add {
 	extension = {
@@ -39,6 +39,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 		vim.highlight.on_yank()
 	end,
 })
+
+vim.api.nvim_create_user_command('InspectRtp',
+	function()
+		vim.cmd "new | put =split(&runtimepath, ',')"
+	end,{}
+)
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -857,3 +863,10 @@ require('lazy').setup({
 		},
 	},
 })
+
+-- TODO: integrate this into my custom coloscheme
+vim.cmd 'hi MiniStatuslineFilename guibg=#CCCCCC guifg=#222222 gui=bold'
+vim.cmd 'hi MiniStatuslineDevinfo guibg=#CCCCCC guifg=#222222 gui=bold'
+vim.cmd 'hi MiniStatuslineFileinfo guibg=#CCCCCC guifg=#222222 gui=bold'
+vim.cmd 'hi MiniStatuslineInactive guibg=#778899 guifg=#444444'
+vim.cmd 'hi MsgArea guibg=#778899 guifg=#EEEEEE'
