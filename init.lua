@@ -10,6 +10,7 @@ Useful commands:
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.opt.swapfile = false
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
@@ -288,7 +289,7 @@ require('lazy').setup({
 
 			vim.keymap.set('n', '<leader>gs', '<Cmd>vert Git<CR>', { desc = '[G]it [S]tatus' })
 			vim.keymap.set('n', '<leader>gl', '<Cmd>vert Git log --oneline<CR>', { desc = '[G]it [L]og' })
-			vim.keymap.set('n', '<leader>gfh', '<Cmd>vert Git log --oneline %<CR>', { desc = '[G]it [F]ile [H]istory' })
+			vim.keymap.set('n', '<leader>gfh', '<Cmd>vert Git log --oneline --follow %<CR>', { desc = '[G]it [F]ile [H]istory' })
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set('n', '<leader>/', function()
