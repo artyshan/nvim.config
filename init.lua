@@ -251,6 +251,14 @@ require('lazy').setup({
 					preview = {
 						filesize_limit = 0.3,
 					},
+					vimgrep_arguments = {
+						'rg',
+						'--color=never',
+						'--no-heading',
+						'--with-filename',
+						'--line-number',
+						'--column',
+					},
 				},
 				pickers = {
 					lsp_references = {
@@ -274,7 +282,6 @@ require('lazy').setup({
 			vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
 			vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
 			vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-			vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
 			vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 			vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
 			vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
@@ -300,6 +307,18 @@ require('lazy').setup({
 					prompt_title = 'Live Grep in Open Files',
 				}
 			end, { desc = '[S]earch [/] in Open Files' })
+			-- Live Grep with case sensitivity options
+			vim.keymap.set('n', '<leader>sgs', function()
+				builtin.live_grep {
+					prompt_title = 'Live Grep (Case sensitive)',
+				}
+			end, { desc = '[S]earch by [G]rep case [S]ensitive' })
+			vim.keymap.set('n', '<leader>sgi', function()
+				builtin.live_grep {
+					prompt_title = 'Live Grep (Case insensitive)',
+					additional_args = { '--ignore-case' },
+				}
+			end, { desc = '[S]earch by [G]rep case [I]nsensitive' })
 
 			-- Shortcut for searching your Neovim configuration files
 			vim.keymap.set('n', '<leader>sn', function()
@@ -308,6 +327,9 @@ require('lazy').setup({
 			vim.keymap.set('n', '<leader>st', function()
 				builtin.find_files { cwd = '$XDG_CONFIG_HOME/tmux' }
 			end, { desc = '[S]earch [T]mux files' })
+			vim.keymap.set('n', '<leader>sm', function()
+				builtin.find_files { cwd = '$NOTES' }
+			end, { desc = '[S]earch [M]y notes' })
 		end,
 	},
 
@@ -388,6 +410,9 @@ require('lazy').setup({
 					-- or a suggestion from your LSP for this to activate.
 					map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 					map('<leader>ch', vim.lsp.buf.hover, '[C]ode [H]int')
+					map('<leader>cd', function()
+						vim.diagnostic.open_float { border = 'single' }
+					end, '[C]ode [D]iagnostic')
 
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--  For example, in C this would take you to the header.

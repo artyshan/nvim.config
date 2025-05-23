@@ -37,3 +37,7 @@ vim.keymap.set('i', 'kj', '<Esc>')
 
 -- Oil.nvim
 vim.keymap.set('n', '-', '<Cmd>Oil<CR>')
+
+vim.keymap.set('n', '<leader>gp', function()
+	require('gitsigns').preview_hunk()
+end, { desc = 'Preview hunk under the cursor' })
