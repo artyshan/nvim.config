@@ -40,11 +40,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	end,
 })
 
-vim.api.nvim_create_user_command('InspectRtp',
-	function()
-		vim.cmd "new | put =split(&runtimepath, ',')"
-	end,{}
-)
+vim.api.nvim_create_user_command('InspectRtp', function()
+	vim.cmd "new | put =split(&runtimepath, ',')"
+end, {})
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -869,4 +867,3 @@ vim.cmd 'hi MiniStatuslineFilename guibg=#CCCCCC guifg=#222222 gui=bold'
 vim.cmd 'hi MiniStatuslineDevinfo guibg=#CCCCCC guifg=#222222 gui=bold'
 vim.cmd 'hi MiniStatuslineFileinfo guibg=#CCCCCC guifg=#222222 gui=bold'
 vim.cmd 'hi MiniStatuslineInactive guibg=#778899 guifg=#444444'
-vim.cmd 'hi MsgArea guibg=#778899 guifg=#EEEEEE'
