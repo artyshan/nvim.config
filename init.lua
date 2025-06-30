@@ -57,6 +57,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+vim.cmd.colorscheme 'global'
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -698,21 +700,6 @@ require('lazy').setup({
 					{ name = 'path' },
 				},
 			}
-		end,
-	},
-	{ -- You can easily change to a different colorscheme.
-		-- Change the name of the colorscheme plugin below, and then
-		-- change the command in the config to whatever the name of that colorscheme is.
-		--
-		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-		'fcancelinha/nordern.nvim',
-		priority = 1000, -- Make sure to load this before all the other start plugins.
-		init = function()
-			-- Load the colorscheme here.
-			vim.cmd.colorscheme 'nordern'
-
-			-- You can configure highlights by doing something like:
-			vim.cmd.hi 'Comment gui=none'
 		end,
 	},
 
