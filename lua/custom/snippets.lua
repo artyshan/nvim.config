@@ -53,4 +53,19 @@ ls.add_snippets('html', {
 
 ls.add_snippets('go', {
 	ls.parser.parse_snippet({ trig = 'for', name = 'For loop' }, 'for $1 {\n\t$0\n}'),
+	ls.parser.parse_snippet({ trig = 'iferr', name = 'Conditional for error' }, 'if err != nil {\n\t$0\n}'),
+	ls.parser.parse_snippet({ trig = 'structdef', name = 'Struct definition' }, 'type ${1:Name} struct {\n\t$0\n}'),
+})
+
+ls.add_snippets('sh', {
+	ls.parser.parse_snippet({ trig = 'exec', name = 'Execute command' }, '$( $0 )'),
+	ls.parser.parse_snippet({ trig = 'if', name = 'If' }, 'if [ ${1:condition} ]; then\n\t$0\nfi'),
+	ls.parser.parse_snippet({ trig = 'ifd', name = 'If double brackets' }, 'if [[ ${1:condition} ]]; then\n\t$0\nfi'),
+	ls.parser.parse_snippet({ trig = 'forin', name = 'For in' }, 'for ${1:var} in ${2:list}; do\n\t$0\ndone'),
+	ls.parser.parse_snippet({ trig = 'for', name = 'For' }, 'for (( ${1:var}; ${2:condition}; ${3:step} )); do\n\t$0\ndone'),
+	ls.parser.parse_snippet({ trig = 'func', name = 'Functionk' }, 'function ${1:name} {\n\t$0\n}'),
+})
+
+ls.add_snippets('c', {
+	ls.parser.parse_snippet({ trig = 'include', name = 'Include' }, '#include <${0:header}>'),
 })
