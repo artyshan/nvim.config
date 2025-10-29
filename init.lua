@@ -73,18 +73,6 @@ require('lazy').setup({
 	'tpope/vim-fugitive',
 	'lambdalisue/vim-suda',
 
-	-- NOTE: Plugins can also be added by using a table,
-	-- with the first argument being the link and the following
-	-- keys can be used to configure plugin behavior/loading/etc.
-	--
-	-- Use `opts = {}` to force a plugin to be loaded.
-	--
-
-	-- Here is a more advanced example where we pass configuration
-	-- options to `gitsigns.nvim`. This is equivalent to the following Lua:
-	--    require('gitsigns').setup({ ... })
-	--
-	-- See `:help gitsigns` to understand what the configuration keys do
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		'lewis6991/gitsigns.nvim',
 		opts = {
@@ -121,21 +109,6 @@ require('lazy').setup({
 			viewer_path = 'glslv',
 		},
 	},
-
-	-- NOTE: Plugins can also be configured to run Lua code when they are loaded.
-	--
-	-- This is often very useful to both group configuration, as well as handle
-	-- lazy loading plugins that don't need to be loaded immediately at startup.
-	--
-	-- For example, in the following configuration, we use:
-	--  event = 'VimEnter'
-	--
-	-- which loads which-key before all the UI elements are loaded. Events can be
-	-- normal autocommands events (`:help autocmd-events`).
-	--
-	-- Then, because we use the `config` key, the configuration only runs
-	-- after the plugin has been loaded:
-	--  config = function() ... end
 
 	{ -- Useful plugin to show you pending keybinds.
 		'folke/which-key.nvim',
@@ -188,6 +161,9 @@ require('lazy').setup({
 				{ '<leader>t', group = '[T]oggle' },
 				{ '<leader>g', group = '[G]it' },
 				{ '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+			},
+			win = {
+				border = 'single',
 			},
 		},
 	},
@@ -339,9 +315,6 @@ require('lazy').setup({
 			vim.keymap.set('n', '<leader>sn', function()
 				builtin.find_files { cwd = vim.fn.stdpath 'config' }
 			end, { desc = '[S]earch [N]eovim files' })
-			vim.keymap.set('n', '<leader>st', function()
-				builtin.find_files { cwd = '$XDG_CONFIG_HOME/tmux' }
-			end, { desc = '[S]earch [T]mux files' })
 			vim.keymap.set('n', '<leader>sm', function()
 				builtin.find_files { cwd = '$NOTES' }
 			end, { desc = '[S]earch [M]y notes' })
@@ -424,7 +397,9 @@ require('lazy').setup({
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
 					map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
-					map('<leader>ch', vim.lsp.buf.hover, '[C]ode [H]int')
+					map('<leader>ch', function()
+						vim.lsp.buf.hover { border = 'single' }
+					end, '[C]ode [H]int')
 					map('<leader>cd', function()
 						vim.diagnostic.open_float { border = 'single' }
 					end, '[C]ode [D]iagnostic')
@@ -562,7 +537,15 @@ require('lazy').setup({
 			{
 				'<leader>f',
 				function()
-					require('conform').format { async = true, lsp_format = 'fallback' }
+					local bufnr = vim.api.nvim_get_current_buf()
+					local disable_filetypes = { c = true, cpp = true }
+					local lsp_format_opt
+					if disable_filetypes[vim.bo[bufnr].filetype] then
+						lsp_format_opt = 'never'
+					else
+						lsp_format_opt = 'fallback'
+					end
+					require('conform').format { async = true, lsp_format = lsp_format_opt }
 				end,
 				mode = '',
 				desc = '[F]ormat buffer',
@@ -856,9 +839,3 @@ require('lazy').setup({
 		},
 	},
 })
-
--- TODO: integrate this into my custom coloscheme
-vim.cmd 'hi MiniStatuslineFilename guibg=#CCCCCC guifg=#222222 gui=bold'
-vim.cmd 'hi MiniStatuslineDevinfo guibg=#CCCCCC guifg=#222222 gui=bold'
-vim.cmd 'hi MiniStatuslineFileinfo guibg=#CCCCCC guifg=#222222 gui=bold'
-vim.cmd 'hi MiniStatuslineInactive guibg=#778899 guifg=#444444'

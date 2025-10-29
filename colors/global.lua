@@ -45,8 +45,11 @@ local function setup(colors)
 
 	local fg_dim1 = blend(fg, bg, 0.6)
 	local fg_dim2 = blend(fg, bg, 0.4)
+	local fg_dim3 = blend(fg, bg, 0.2)
 	local bg_dim = blend(bg, fg, 0.9)
-	local bg_yellow = blend(bg, fg_yellow, 0.6)
+	local bg_yellow = blend(bg, fg_yellow, 0.9)
+	local bg_green = blend(bg, fg_green, 0.9)
+	local bg_red = blend(bg, fg_red, 0.9)
 
 	local groups = {
 		-- Main hl groups
@@ -65,6 +68,8 @@ local function setup(colors)
 		WinSeparator = { link = 'Normal' },
 		MatchParen = { fg = fg, bg = bg_yellow },
 		Visual = { bg = bg_dim },
+		NormalFloat = { link = 'Normal' },
+		FloatBorder = { link = 'Normal' },
 
 		-- Statusline
 		StatusLine = { link = 'Cursor' },
@@ -79,7 +84,7 @@ local function setup(colors)
 		Number = { fg = fg_purple },
 		Boolean = { fg = fg_purple },
 		Float = { fg = fg_purple },
-		LineNr = { fg = fg_dim2 },
+		LineNr = { fg = fg_dim3 },
 		NonText = { link = 'LineNr' },
 
 		Identifier = { fg = fg },
@@ -117,9 +122,13 @@ local function setup(colors)
 
 		-- Git
 		-- TODO: add bg
-		DiffAdd = { fg = fg_green },
-		DiffChange = { fg = fg_yellow },
-		DiffDelete = { fg = fg_red },
+		Added = { fg = fg_green, bg = bg_green },
+		Changed = { fg = fg_yellow, bg = bg_yellow },
+		Removed = { fg = fg_red, bg = bg_red },
+
+		DiffAdd = { link = 'Added' },
+		DiffChange = { link = 'Changed' },
+		DiffDelete = { link = 'Removed' },
 
 		ErrorMsg = { fg = fg_red },
 		WarningMsg = { fg = fg_yellow },
