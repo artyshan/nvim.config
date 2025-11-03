@@ -13,6 +13,7 @@ ls.add_snippets('typescript', {
 	ls.parser.parse_snippet({ trig = '{ ', name = 'Inline block' }, '{ $0 }'),
 	ls.parser.parse_snippet({ trig = '{', name = 'Block' }, '{\n\t$0\n}'),
 	ls.parser.parse_snippet({ trig = 'clog', name = 'Console Log' }, 'console.log("$0");'),
+	ls.parser.parse_snippet({ trig = '/**', name = 'JsDoc' }, '/**\n * $0\n */'),
 
 	-- angular
 
@@ -33,9 +34,10 @@ ls.add_snippets('javascript', {
 	ls.parser.parse_snippet({ trig = '{ ', name = 'Inline block' }, '{ $0 }'),
 	ls.parser.parse_snippet({ trig = '{', name = 'Block' }, '{\n\t$0\n}'),
 	ls.parser.parse_snippet({ trig = 'clog', name = 'Console Log' }, 'console.log($0);'),
+	ls.parser.parse_snippet({ trig = '/**', name = 'JsDoc' }, '/**\n * $0\n */'),
 })
 
-ls.add_snippets('html', {
+ls.add_snippets('htmlangular', {
 	ls.parser.parse_snippet({ trig = 'div', name = 'div' }, '<div>$0</div>'),
 	ls.parser.parse_snippet({ trig = 'span', name = 'span' }, '<span>$0</span>'),
 	ls.parser.parse_snippet({ trig = 'class', name = 'class' }, 'class="$0"'),
@@ -43,6 +45,8 @@ ls.add_snippets('html', {
 	-- Angular
 	-- TODO: load only in angular projects
 	ls.parser.parse_snippet({ trig = 'if', name = 'If' }, '@if (${1:condition}) {\n\t$0\n}'),
+	ls.parser.parse_snippet({ trig = 'for', name = 'For' }, '@for (${1:item} of ${2:list}; track ${3:prop}) {\n\t$0\n}'),
+	ls.parser.parse_snippet({ trig = 'empty', name = 'Empty' }, '@empty {\n\t$0\n}'),
 	ls.parser.parse_snippet({ trig = 'ngcont', name = 'Ng-container' }, '<ng-container>$0</ng-container>'),
 	ls.parser.parse_snippet({ trig = 'ngtemp', name = 'Ng-template' }, '<ng-template>$0</ng-template>'),
 	ls.parser.parse_snippet({ trig = 'input', name = 'Input' }, '[${1:name}]="${0:value}"'),

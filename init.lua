@@ -41,8 +41,50 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	end,
 })
 
+-- My custom commands
 vim.api.nvim_create_user_command('InspectRtp', function()
 	vim.cmd "new | put =split(&runtimepath, ',')"
+end, {})
+
+vim.api.nvim_create_user_command('Cpath', function()
+	local filepath = vim.fn.expand '%'
+	vim.fn.setreg('+', filepath)
+	print 'File path copied to clipboard'
+end, {})
+
+vim.api.nvim_create_user_command('LspCurrent', function()
+	local clients = vim.lsp.get_clients { bufnr = 0 }
+	for i, client in pairs(clients) do
+		print(client.config.name)
+	end
+end, {})
+
+vim.api.nvim_create_user_command('Jest', function()
+	local filepath = vim.fn.expand '%'
+	local buf = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_open_win(buf, true, {
+		relative = 'editor',
+		-- win = vim.api.nvim_get_current_win(),
+		row = 4,
+		col = 4,
+		width = 200,
+		height = 100,
+		border = 'single',
+		title = 'npm run test-single ' .. filepath,
+	})
+	local channel = vim.api.nvim_open_term(buf, {})
+	local output = function(err, data)
+		if data ~= nil then
+			-- local lines = mysplit(data, '\n')
+			-- vim.api.nvim_buf_set_lines(buf, -1, -1, false, lines)
+			vim.api.nvim_chan_send(channel, data)
+		end
+	end
+	vim.system({ 'npm', 'run', 'test-single', filepath }, {
+		-- text = true,
+		stdout = vim.schedule_wrap(output),
+		stderr = vim.schedule_wrap(output),
+	})
 end, {})
 
 -- [[ Install `lazy.nvim` plugin manager ]]

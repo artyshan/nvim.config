@@ -45,3 +45,6 @@ vim.keymap.set('n', '-', '<Cmd>Oil<CR>')
 vim.keymap.set('n', '<leader>gp', function()
 	require('gitsigns').preview_hunk()
 end, { desc = 'Preview hunk under the cursor' })
+
+-- Prevent jumping into next occurence on *
+vim.keymap.set('n', '*', '*<S-n>')
