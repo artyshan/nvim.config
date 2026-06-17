@@ -33,10 +33,12 @@ end, { expr = true })
 
 local fzf = require('fzf-lua')
 vim.keymap.set("n", "<leader>sf", fzf.files, { desc = "[S]earch [F]iles" })
-vim.keymap.set("n", "<leader>sn", function() fzf.files({ cwd = vim.fn.stdpath("config") }) end, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>s.", fzf.oldfiles, { desc = "[S]earch [F]iles" })
 vim.keymap.set("n", "<leader>sn", function() fzf.files({ cwd = vim.fn.stdpath("config") }) end, { desc = "[S]earch [N]eovim files" })
 vim.keymap.set("n", "<leader>sb", function() fzf.buffers() end, { desc = "[S]earch [B]uffers" })
 vim.keymap.set("n", "<leader>sg", function() fzf.live_grep() end, { desc = "[S]earch [G]rep" })
+
+vim.keymap.set("n", "<leader>gs", "<CMD>vert Git<CR>", { desc = "[S]earch [G]rep" })
 
 -- Prevent asterisk from jumping to the next occurence of the word
 vim.keymap.set("n", "*", function() 
