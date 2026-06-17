@@ -16,7 +16,14 @@ require('nvim-treesitter').setup({
 	build = ':TSUpdate'
 })
 require('mini.surround').setup()
-require('fzf-lua').setup()
+require('fzf-lua').setup({
+	files = {
+        formatter = "path.filename_first",
+	},
+	oldfiles = {
+        formatter = "path.filename_first",
+	},
+})
 require('oil').setup({
 	use_default_keymaps = false,
 	keymaps = {
