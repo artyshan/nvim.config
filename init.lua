@@ -7,7 +7,8 @@ vim.pack.add({
 	'https://github.com/nvim-mini/mini.surround',
 	'https://github.com/tpope/vim-fugitive',
 	'https://github.com/stevearc/oil.nvim',
-	'https://github.com/ibhagwan/fzf-lua',
+	'https://github.com/nvim-lua/plenary.nvim',
+	'https://github.com/nvim-telescope/telescope.nvim',
 	'https://github.com/L3MON4D3/LuaSnip',
 	'https://github.com/widatama/vim-phoenix',
 	{ src = 'https://github.com/saghen/blink.cmp', version = "v1" }
@@ -16,13 +17,10 @@ require('nvim-treesitter').setup({
 	build = ':TSUpdate'
 })
 require('mini.surround').setup()
-require('fzf-lua').setup({
-	files = {
-        formatter = "path.filename_first",
-	},
-	oldfiles = {
-        formatter = "path.filename_first",
-	},
+require('telescope').setup({
+	defaults = {
+		path_display = { "filename_first" },
+	}
 })
 require('oil').setup({
 	use_default_keymaps = false,

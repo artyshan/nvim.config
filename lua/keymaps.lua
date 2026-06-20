@@ -40,12 +40,12 @@ vim.keymap.set("i", "<Tab>", function()
 end, { expr = true })
 
 -- Fzf keymaps
-local fzf = require('fzf-lua')
-vim.keymap.set("n", "<leader>sf", fzf.files, { desc = "[S]earch [F]iles" })
-vim.keymap.set("n", "<leader>s.", fzf.oldfiles, { desc = "[S]earch [F]iles" })
-vim.keymap.set("n", "<leader>sn", function() fzf.files({ cwd = vim.fn.stdpath("config") }) end, { desc = "[S]earch [N]eovim files" })
-vim.keymap.set("n", "<leader>sb", function() fzf.buffers() end, { desc = "[S]earch [B]uffers" })
-vim.keymap.set("n", "<leader>sg", function() fzf.live_grep() end, { desc = "[S]earch [G]rep" })
+local telescope = require('telescope.builtin')
+vim.keymap.set("n", "<leader>sf", telescope.find_files, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>s.", telescope.oldfiles, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>sn", function() telescope.find_files({ cwd = vim.fn.stdpath("config") }) end, { desc = "[S]earch [N]eovim files" })
+vim.keymap.set("n", "<leader>sb", function() telescope.buffers() end, { desc = "[S]earch [B]uffers" })
+vim.keymap.set("n", "<leader>sg", function() telescope.live_grep() end, { desc = "[S]earch [G]rep" })
 
 -- Git keymaps
 vim.keymap.set("n", "<leader>gs", "<CMD>vert Git<CR>", { desc = "[S]earch [G]rep" })
