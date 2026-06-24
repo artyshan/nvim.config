@@ -1,3 +1,5 @@
+local util = require('util')
+
 -- Prevents losing selection after indenting
 vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('v', '<', '<gv')
@@ -38,6 +40,8 @@ vim.keymap.set("i", "<Tab>", function()
 	end
   	return "<Tab>"
 end, { expr = true })
+
+vim.keymap.set("n", "<leader>f", util.format_current_buffer, { desc = "[F]ormat current buffer" })
 
 -- Fzf keymaps
 local telescope = require('telescope.builtin')
