@@ -13,6 +13,11 @@ vim.lsp.config['ts'] = {
 	root_markers = { 'tsconfig.json' },
 	filetypes = { 'typescript' },
 }
+vim.lsp.config['somesass-ls'] = {
+	cmd = { 'some-sass-language-server', '--stdio' },
+	root_markers = { 'package.json' },
+	filetypes = { 'scss', 'sass' },
+}
 vim.lsp.config['c'] = {
 	cmd = { 'clangd' },
 	filetypes = { 'c' },
@@ -25,5 +30,6 @@ vim.lsp.config['xml'] = {
 vim.lsp.enable { 'jdtls' }
 vim.lsp.enable { 'lua' }
 vim.lsp.enable { 'ts' }
+vim.lsp.enable { 'somesass-ls' }
 vim.lsp.enable { 'c' }
 vim.lsp.enable { 'xml' }
